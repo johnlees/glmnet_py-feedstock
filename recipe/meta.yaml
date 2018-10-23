@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/johnlees/glmnet_python/archive/{{ version }}.tar.gz
+  url: https://github.com/johnlees/glmnet_python/archive/v{{ version }}.tar.gz
   sha256: c6bd4f60daa70ad2d2297ae804a2e2e5ab22021af6c14b3a288f94965c613196
 
 build:
