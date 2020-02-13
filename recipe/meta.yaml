@@ -10,7 +10,7 @@ source:
   sha256: c6bd4f60daa70ad2d2297ae804a2e2e5ab22021af6c14b3a288f94965c613196
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win or py2k]
 
 requirements:
@@ -25,7 +25,7 @@ requirements:
     - python
     - joblib >=0.10.3
     - scipy
-    - matplotlib
+    - matplotlib-base
 
 test:
   imports:
