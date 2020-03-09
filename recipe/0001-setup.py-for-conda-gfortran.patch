@@ -1,0 +1,61 @@
+From e6d04654e9b52020f0ae61e881edaad87c4a987e Mon Sep 17 00:00:00 2001
+From: John Lees <lees.john6@gmail.com>
+Date: Mon, 9 Mar 2020 17:41:52 +0000
+Subject: [PATCH 1/2] setup.py for conda gfortran
+
+---
+ setup.py | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index fcd8e4c..e66e8cc 100644
+--- a/setup.py
++++ b/setup.py
+@@ -13,7 +13,7 @@ class GfortranExtension(Extension):
+ class GfortranBuild(build_ext):
+     def run(self):
+         try:
+-            out = subprocess.check_output(['gfortran', '--version'])
++            out = subprocess.check_output('${FC:-gfortran} --version', shell=True)
+         except OSError:
+             raise RuntimeError("gfortran must be installed to build the following extensions: " +
+                                ", ".join(e.name for e in self.extensions))
+@@ -32,7 +32,8 @@ class GfortranBuild(build_ext):
+             os.makedirs(self.build_temp)
+ 
+         env = os.environ.copy()
+-        subprocess.check_call(['gfortran', ext.input] + gfortran_args, cwd=self.build_temp, env=env)
++        subprocess.check_call('${FC:-gfortran ' + " ".join([ext.input] + gfortran_args),
++                              cwd=self.build_temp, env=env, shell=True)
+ 
+ setup(name='glmnet_python',
+       version = '1.0.1',
+-- 
+2.25.0
+
+
+From d6bb6c930fa8f3fb487392336852869681923dd7 Mon Sep 17 00:00:00 2001
+From: John Lees <lees.john6@gmail.com>
+Date: Mon, 9 Mar 2020 17:47:01 +0000
+Subject: [PATCH 2/2] Fix closing brace
+
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index e66e8cc..ed38abc 100644
+--- a/setup.py
++++ b/setup.py
+@@ -32,7 +32,7 @@ class GfortranBuild(build_ext):
+             os.makedirs(self.build_temp)
+ 
+         env = os.environ.copy()
+-        subprocess.check_call('${FC:-gfortran ' + " ".join([ext.input] + gfortran_args),
++        subprocess.check_call('${FC:-gfortran} ' + " ".join([ext.input] + gfortran_args),
+                               cwd=self.build_temp, env=env, shell=True)
+ 
+ setup(name='glmnet_python',
+-- 
+2.25.0
+
