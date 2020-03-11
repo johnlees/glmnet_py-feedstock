@@ -9,7 +9,7 @@ source:
   url: https://github.com/johnlees/glmnet_python/archive/v{{ version }}.tar.gz
   sha256: 0634d7ca4c5af672a786e7d4cb99089d34a908b173a9ab078275ab416671bc30
   patches:
-    - 0001-setup.py-for-conda-gfortran.patch
+    - 0001-Use-conda-gfortran.patch
 
 build:
   number: 0
