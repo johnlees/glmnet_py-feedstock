@@ -12,9 +12,8 @@ source:
     - 0001-setup.py-for-conda-gfortran.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win or py2k]
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
 
 requirements:
   build:
