@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/johnlees/glmnet_python/archive/v{{ version }}.tar.gz
-  sha256: 0634d7ca4c5af672a786e7d4cb99089d34a908b173a9ab078275ab416671bc30
+  sha256: 7a5550514140dabbd27ad4eb1c04db64199d9bb89541e088d9bb162570205e76
   patches:
     - 0001-Use-conda-gfortran.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win or py2k]
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
 
